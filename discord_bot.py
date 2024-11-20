@@ -106,12 +106,12 @@ if trigger_phrase_regex.search(message.content):
 
     
     #Start the coroutine
-if bot.user.mentioned_in(message):
+    if bot.user.mentioned_in(message):
         if message.channel.id != ALLOWED_CHANNEL_ID:
-                response_message = await message.channel.send("Нажаль я не можу відповісти в цьому каналі, але ви можете мені написати в <#1215861775052963980>")
-                 await response_message.delete(delay=5)
-                 await message.delete(delay=5)
-                 return
+            response_message = await message.channel.send("Нажаль я не можу відповісти в цьому каналі, але ви можете мені написати в <#1215861775052963980>")
+            await response_message.delete(delay=5)
+            await message.delete(delay=5)
+            return
 
     asyncio.create_task(process_message(message))
     
@@ -251,7 +251,6 @@ def clean_discord_message(input_string):
     return cleaned_content  
 
 #---------------------------------------------Scraping Text from URL-------------------------------------------------
-
 async def ProcessURL(message_str):
     pre_prompt = remove_url(message_str)
     if pre_prompt == "":
